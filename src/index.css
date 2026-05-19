@@ -1,0 +1,22 @@
+/* src/index.css */
+@import "tailwindcss";
+
+/* Desktop: cursor personalizado */
+@media (min-width: 769px) {
+  body {
+    cursor: none;
+  }
+}
+
+/* Tablet y móvil: cursor normal, ocultamos elementos del cursor */
+@media (max-width: 768px) {
+  .fixed.pointer-events-none {
+    display: none !important;
+  }
+}
+
+/* Optimización para animaciones con GSAP */
+.hero-title, .hero-subtitle, .hero-button,
+.about-content, .project-image, .project-button {
+  will-change: transform, opacity;
+}
