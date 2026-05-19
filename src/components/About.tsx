@@ -44,7 +44,7 @@ export const About = () => {
                 increíbles al interactuar con ellas.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Con GSAP y React, convierto ideas en animaciones cautivadoras que
+                Con React, convierto ideas en animaciones cautivadoras que
                 cuentan historias y mejoran la experiencia del usuario.
             </p>
             </div>

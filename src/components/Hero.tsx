@@ -48,7 +48,7 @@ export const Hero = () => {
                 Hola, soy <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-pink-600">Sebastián</span>
             </h1>
             <p className="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8">
-                Desarrollo experiencias web con GSAP y React
+                Desarrollo experiencias web con React
             </p>
             <button className="hero-button px-8 py-3 bg-purple-600 rounded-full font-semibold hover:bg-purple-700 transition-colors">
                 Ver proyectos
