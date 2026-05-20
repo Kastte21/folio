@@ -2,75 +2,70 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export const CustomCursor = () => {
-    const cursorRef = useRef<HTMLDivElement>(null);
-    const followerRef = useRef<HTMLDivElement>(null);
+    const cursorRef = useRef<HTMLDivElement>(null)
+    const followerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        const cursor = cursorRef.current;
-        const follower = followerRef.current;
+        const cursor = cursorRef.current
+        const follower = followerRef.current
         if (!cursor || !follower) return
 
-        // Posiciones actuales y objetivo
-        let cursorX = 0, cursorY = 0
-        let followerX = 0, followerY = 0
+        const isTouch = window.matchMedia('(pointer: coarse)').matches
+        if (isTouch) return
 
-        // Actualizar posvcion del mouse
-        const onMouseMove = (e: MouseEvent) => {
-            cursorX = e.clientX;
-            cursorY = e.clientY;
-            gsap.set(cursor, { x: cursorX, y: cursorY })
-        }
-        
-        // Loop de anmacion para el seguidor (efecto de retraso)
-        const animateFollower = () => {
-            followerX += (cursorX - followerX) * 0.15;
-            followerY += (cursorY - followerY) * 0.15;
-            gsap.set(follower, { x: followerX, y: followerY })
-            requestAnimationFrame(animateFollower)
-        }
-
-        window.addEventListener("mousemove", onMouseMove);
-        const animationId = requestAnimationFrame(animateFollower)
-
-        // Cambiar tamaño al pasar sobre elementos interactivos
-        const interactiveElements = document.querySelectorAll("a, button, .project-card");
-
-        const handleMouseEnter = () => {
-            gsap.to(cursor, { scale: 1.5, duration: 0.3 })
-            gsap.to(follower, { scale: 2.5, duration: 0.3 })
-        }
-        const handleMouseLeave = () => {
-            gsap.to(cursor, { scale: 1, duration: 0.3 })
-            gsap.to(follower, { scale: 1, duration: 0.3 })
-        }
-
-        interactiveElements.forEach(el => {
-            el.addEventListener("mouseenter", handleMouseEnter)
-            el.addEventListener("mouseleave", handleMouseLeave)
+        const move = (e: MouseEvent) => {
+        gsap.to(cursor, {
+            x: e.clientX - 6,
+            y: e.clientY - 6,
+            duration: 0.08,
+            ease: 'none',
         })
-    
+
+        gsap.to(follower, {
+            x: e.clientX - 18,
+            y: e.clientY - 18,
+            duration: 0.25,
+            ease: 'power3.out',
+        })
+        }
+
+        const onEnterInteractive = () => {
+        gsap.to(follower, { scale: 1.6, opacity: 0.35, duration: 0.2 })
+        }
+
+        const onLeaveInteractive = () => {
+        gsap.to(follower, { scale: 1, opacity: 0.2, duration: 0.2 })
+        }
+
+        const interactive = Array.from(
+        document.querySelectorAll('a, button, [role="button"], input, textarea, select')
+        )
+
+        interactive.forEach((el) => {
+        el.addEventListener('mouseenter', onEnterInteractive)
+        el.addEventListener('mouseleave', onLeaveInteractive)
+        })
+
+        window.addEventListener('mousemove', move)
+
         return () => {
-        window.removeEventListener('mousemove', onMouseMove)
-        cancelAnimationFrame(animationId)
-        interactiveElements.forEach(el => {
-            el.removeEventListener('mouseenter', handleMouseEnter)
-            el.removeEventListener('mouseleave', handleMouseLeave)
-        })}
+        window.removeEventListener('mousemove', move)
+        interactive.forEach((el) => {
+            el.removeEventListener('mouseenter', onEnterInteractive)
+            el.removeEventListener('mouseleave', onLeaveInteractive)
+        })
+        }
     }, [])
 
     return (
         <>
-        {/* Cursor pequeño y brillante */}
-        <div
-            ref={cursorRef}
-            className="fixed top-0 left-0 w-3 h-3 bg-purple-500 rounded-full pointer-events-none z-50 mix-blend-difference"
-            style={{ transform: 'translate3d(0,0,0)' }}
-        />
-        {/* Anillo seguidor más grande con retraso */}
         <div
             ref={followerRef}
-            className="fixed top-0 left-0 w-8 h-8 border-2 border-purple-400 rounded-full pointer-events-none z-50 opacity-70"
-            style={{ transform: 'translate3d(0,0,0)' }}
+            className="pointer-events-none fixed top-0 left-0 z-9998 w-9 h-9 rounded-full border border-cyan-300/60 bg-cyan-200/10 mix-blend-screen hidden md:block"
+        />
+        <div
+            ref={cursorRef}
+            className="pointer-events-none fixed top-0 left-0 z-9999 w-3 h-3 rounded-full bg-cyan-300 hidden md:block"
         />
         </>
     )

@@ -1,92 +1,67 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-//import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { FaReact, FaGitAlt, FaDatabase } from 'react-icons/fa';
+import { SiTypescript, /*SiGsap,*/ SiPostgresql, SiMysql, SiPython } from 'react-icons/si';
+import { DiJava } from "react-icons/di";
 
-const skillsData = [
-    { name: "React", /*icon: "/icons/react.svg" ,*/ level:75 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'GSAP', level: 70 },
-    { name: 'MSSQL Sever', level: 90 },
-    { name: 'MySQL', level: 75 },
-    { name: 'Python', level: 90 },
-    { name: 'Java', level: 78 },
+gsap.registerPlugin(ScrollTrigger);
+
+const skills = [
+    { name: 'React', icon: FaReact, color: '#61DAFB' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    //{ name: 'GSAP', icon: SiGsap, color: '#88CE02' },
+    { name: 'Git', icon: FaGitAlt, color: '#F05032' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
+    { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+    { name: 'SQL Server', icon: FaDatabase, color: '#CC2927' },
+    { name: 'Python', icon: SiPython, color: '#3776AB' },
+    { name: 'Java', icon: DiJava, color: '#007396' },
 ]
 
 export const Skills = () => {
     const sectionRef = useRef<HTMLDivElement>(null)
-    const barsRef = useRef<(HTMLDivElement | null)[]>([])
+    const cardsRef = useRef<(HTMLDivElement | null)[]>([])
 
     useGSAP(() => {
-        // Las barras comienzan con width 0
-        barsRef.current.forEach(bar => {
-            if (bar) gsap.set(bar, { width: '0%' })
-        })
+        const cards = cardsRef.current.filter(c => c !== null);
 
-        // Timeline que se disparara con ScrollTrigger
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse',
-            },
-        })
-
-        // Animaciones del titulo y subtitulo
-        tl.from('.skills-title', {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-        })
-        .from('.skills-subtitle', {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-        }, '-=0.4')
-        // Animacion de cada fila de Skill (etiqueta + barra)
-        .from('.skill-item',{
-            opacity: 0,
-            x: -30,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'power2.out',
-        }, '-=0.2')
-        // Barras de progreso a su ancho de objetivo
-        .to(barsRef.current, {
-            width: (i) => `${skillsData[i].level}%`,
-            duration: 1,
-            stagger: 0.05,
-            ease: 'power2.inOut',
-        }, '-=0.8')
+        gsap.fromTo(cards,
+            { y: 40, opacity: 0, scale: 0.95 },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.7,
+                stagger: 0.08,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 75%',
+                    toggleActions: 'play none none reverse',
+                },
+            }
+        );
     }, { scope: sectionRef })
 
     return (
-        <section ref={sectionRef} className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="skills-title text-4xl md:text-5xl font-bold text-center mb-4 text-gray-800 dark:text-white">
-                Skills
-            </h2>
-            <p className="skills-subtitle text-center text-gray-600 dark:text-gray-300 mb-12">
-                Tecnologías que domino y disfruto usar
-            </p>
+        <section id="skills" ref={sectionRef} className="py-24 bg-linear-to-b from-black to-slate-950">
+        <div className="max-w-6xl mx-auto px-4">
+            <p className="text-cyan-300 tracking-widest uppercase text-sm text-center mb-3">Skills</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Stack Técnico</h2>
 
-            <div className="space-y-6">
-                {skillsData.map((skill, index) => (
-                    <div key={skill.name} className="skill-item">
-                    <div className="flex justify-between mb-2">
-                        <span className="font-semibold text-gray-700 dark:text-gray-200">{skill.name}</span>
-                        <span className="text-gray-500 dark:text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                        <div
-                        ref={(el) => {(barsRef.current[index] = el)}}
-                        className="bg-linear-to-r from-purple-500 to-pink-500 h-3 rounded-full"
-                        style={{ width: '0%' }}
-                        />
-                    </div>
-                    </div>
-                ))}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            {skills.map((skill, idx) => (
+                <div
+                key={skill.name}
+                ref={(el) => { cardsRef.current[idx] = el }}
+                className="rounded-2xl p-6 bg-white/5 border border-white/10 backdrop-blur-sm text-center transition-transform duration-300 hover:-translate-y-1"
+                >
+                <skill.icon className="w-12 h-12 mx-auto mb-4" style={{ color: skill.color }} />
+                <h3 className="text-lg font-semibold">{skill.name}</h3>
+                </div>
+            ))}
             </div>
         </div>
         </section>
