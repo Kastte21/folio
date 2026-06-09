@@ -18,36 +18,36 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'Portfolio Motion',
-    description: 'Sitio personal con narrativa visual, transiciones suaves y foco en performance.',
-    stack: ['React', 'TypeScript', 'Tailwind'],
-    demo: '#',
-    repo: '#',
-    gradient: 'from-cyan-400 to-blue-500',
-  },
-  {
-    title: 'Dashboard Analytics',
-    description: 'Panel con componentes reutilizables, estados complejos y visualización de métricas.',
-    stack: ['React', 'TypeScript', 'Charting', 'Tailwind'],
-    demo: '#',
-    repo: '#',
-    gradient: 'from-fuchsia-400 to-purple-500',
-  },
-  {
-    title: 'E-commerce UI',
-    description: 'Frontend modular orientado a UX, microinteracciones y flujo de compra optimizado.',
-    stack: ['React', 'TypeScript', 'REST API'],
-    demo: '#',
-    repo: '#',
+    title: 'ETL SPEECH',
+    description: 'Proyecto para procesar audios GSM y M4A, convertirlos a WAV, cargar metadata en base de datos y generar reportes Excel con cruce de información de gestiones CEF.',
+    stack: ['Python', 'SQL', 'Excel'],
+    demo: 'https://github.com/Kastte21/etl-speech',
+    repo: 'https://github.com/Kastte21/etl-speech',
     gradient: 'from-emerald-400 to-teal-500',
   },
   {
-    title: 'Landing Product',
-    description: 'Landing de alto impacto con secciones animadas y layout fully responsive.',
-    stack: ['React', 'Tailwind', 'Vite'],
-    demo: '#',
-    repo: '#',
+    title: 'Orquestador Operativo',
+    description: 'Repositorio de automatización en Python para procesos operativos de cobranza, reportes y cargas de datos. Reduce tareas manuales y mejora la consistencia de la información.',
+    stack: ['Python', 'SQL', 'Automatización'],
+    demo: 'https://github.com/Kastte21/orquestador-operativo',
+    repo: 'https://github.com/Kastte21/orquestador-operativo',
+    gradient: 'from-fuchsia-400 to-purple-500',
+  },
+  {
+    title: 'Web Scraping',
+    description: 'Proyecto de automatización y scraping en Python para extraer y procesar información desde portales oficiales como OSIPTEL y SUNAT.',
+    stack: ['Python', 'APIs', 'Scraping'],
+    demo: 'https://github.com/Kastte21/web-scraping',
+    repo: 'https://github.com/Kastte21/web-scraping',
     gradient: 'from-orange-400 to-rose-500',
+  },
+  {
+    title: 'Portfolio Motion',
+    description: 'Sitio personal con narrativa visual, transiciones suaves y foco en performance. Sirve como carta de presentación técnica y creativa.',
+    stack: ['React', 'TypeScript', 'Tailwind'],
+    demo: 'https://folio-five-zeta.vercel.app/',
+    repo: 'https://github.com/Kastte21/folio',
+    gradient: 'from-cyan-400 to-blue-500',
   },
 ]
 
@@ -151,7 +151,7 @@ export const Projects = () => {
   return (
     <section id='proyectos' ref={sectionRef} className='py-24 bg-linear-to-b from-slate-950 to-black'>
       <div className='max-w-6xl mx-auto px-4'>
-        <p className='text-cyan-300 tracking-widest uppercase text-sm text-center mb-3'>Works</p>
+        <p className='text-cyan-300 tracking-widest uppercase text-sm text-center mb-3'>Datos + Web</p>
         <h2 className='text-4xl md:text-5xl font-bold text-center mb-14'>Proyectos Destacados</h2>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>

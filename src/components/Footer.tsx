@@ -1,5 +1,6 @@
-import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
-import { RiTwitterXFill } from 'react-icons/ri'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
+//import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
+//import { RiTwitterXFill } from 'react-icons/ri'
 
 export const Footer = () => {
     return (
@@ -11,20 +12,20 @@ export const Footer = () => {
 
             <div className="flex items-center gap-3">
             <a
-                href="#"
+                href="https://github.com/Kastte21"
                 className="w-9 h-9 rounded-full border border-white/15 text-gray-300 hover:text-cyan-300 hover:border-cyan-300 flex items-center justify-center transition-colors"
                 aria-label="GitHub"
             >
                 <FaGithub />
             </a>
             <a
-                href="#"
+                href="https://www.linkedin.com/in/ssgk/"
                 className="w-9 h-9 rounded-full border border-white/15 text-gray-300 hover:text-cyan-300 hover:border-cyan-300 flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
             >
                 <FaLinkedinIn />
             </a>
-            <a
+            {/*<a
                 href="#"
                 className="w-9 h-9 rounded-full border border-white/15 text-gray-300 hover:text-cyan-300 hover:border-cyan-300 flex items-center justify-center transition-colors"
                 aria-label="Twitter X"
@@ -37,7 +38,7 @@ export const Footer = () => {
                 aria-label="Instagram"
             >
                 <FaInstagram />
-            </a>
+            </a>*/}
             </div>
         </div>
         </footer>

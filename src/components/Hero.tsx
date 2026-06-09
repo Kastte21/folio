@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,20 +24,19 @@ export const Hero = () => {
         .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
         .to(typedRef.current, { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
         .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
-        
     }, { scope: container })
 
     useEffect(() => {
         if (!typedRef.current) return
 
         const typed = new Typed(typedRef.current, {
-            strings:[
-                'React + TypeScript',
-                'Interfaces modernas con motion',
-                'Experiencias web de alto impacto',
-                'MySQL + MsSQL + PostgreSQL + Python',
-                'Automatizaciones y análisis de datos',
-                'Administración de bases de datos',
+            strings: [
+                'BI, datos y automatización',
+                'SQL Server, MySQL y PostgreSQL',
+                'Power BI, reportes y dashboards',
+                'Python para ETL y scraping',
+                'React + TypeScript para interfaces',
+                'Experiencias web con motion',
             ],
             typeSpeed: 45,
             backSpeed: 28,
@@ -51,7 +50,7 @@ export const Hero = () => {
     const scrollToProjects = () => {
         document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })
     }
-    
+
     return (
         <section
         id="inicio"
@@ -68,7 +67,7 @@ export const Hero = () => {
             Hola, soy <span className="bg-linear-to-r from-cyan-300 to-fuchsia-400 bg-clip-text text-transparent">Sebastián</span>
             </h1>
             <p ref={subtitleRef} className="text-gray-300 text-lg md:text-2xl mb-4">
-            Desarrollo experiencias web interactivas y elegantes.
+            Analista BI y desarrollador frontend enfocado en datos, automatización y experiencias web.
             </p>
             <p className="text-cyan-200 text-xl md:text-2xl h-10 mb-10">
             <span ref={typedRef} />

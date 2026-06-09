@@ -35,7 +35,7 @@ export const Contact = () => {
             <p className="contact-reveal text-cyan-300 tracking-widest uppercase text-sm text-center mb-3">Contact</p>
             <h2 className="contact-reveal text-4xl md:text-5xl font-bold text-center mb-6">Hablemos</h2>
             <p className="contact-reveal text-gray-300 text-center mb-12">
-            Si tienes una idea o proyecto, escríbeme y lo construimos juntos.
+            Si necesitas apoyo en BI, automatización, análisis de datos o una interfaz web para mostrar resultados, escríbeme.
             </p>
 
             <div className="contact-reveal rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8">

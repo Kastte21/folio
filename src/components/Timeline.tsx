@@ -6,9 +6,10 @@ import { useRef } from "react"
 gsap.registerPlugin(ScrollTrigger);
 
 const events = [
-    { year: '2025', month: 'Enero', title: 'Inicio en desarrollo web', desc: 'Primeros proyectos con React' },
-    { year: '2025', month: 'Marzo', title: 'Dominio de SQL Server', desc: 'Administración de bases de datos' },
-    { year: '2025', month: 'Junio', title: 'Portfolio profesional', desc: 'Lanzamiento de este sitio' },
+    { year: '2021', month: 'Ene', title: 'Soporte técnico', desc: 'Mantenimiento, usuarios y administración de infraestructura básica.' },
+    { year: '2023', month: 'Abr', title: 'Base técnica sólida', desc: 'Trabajo con hardware, software, redes, Windows Server y SQL.' },
+    { year: '2025', month: 'Ene', title: 'Entrada a BI', desc: 'Automatización, reportes, bases de datos y análisis operativo.' },
+    { year: '2025', month: 'Jun', title: 'Portfolio mixto', desc: 'Consolidación de una marca personal que une datos, BI y frontend.' },
 ];
 
 export const Timeline = () => {
